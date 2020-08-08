@@ -1,0 +1,17 @@
+{% extends "base.html"%}
+
+{% block title %}
+    <title>home  page</title>
+    {% endblock  %}
+
+    {% block content  %}
+    <div class="container">
+    <div class="jumbotron">
+    <h1>welcom to the {{name}} home page</h1>
+   
+    <a href="{% url 'profile'%}">profile</a>
+    <a href="{% url 'base'%}">base</a>
+    </div>
+    </div>
+    
+    {% endblock   %}
