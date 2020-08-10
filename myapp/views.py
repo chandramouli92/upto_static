@@ -13,3 +13,14 @@ def home (request):
 
 def profile(request):
     return render(request,"myapp/profile.html",{"name":"chandu's"})
+
+def get_demo(request):
+    name=request.GET.get('name')
+    return render(request,"get_demo.html",{'name':name})
+
+def post_demo(request):
+    if request.method=='POST':
+        name=request.POST.get('name')
+        return HttpResponse("<h1>thanks for submitting {} as your data".format(name))
+
+    return render(request,"post_demo.html")
