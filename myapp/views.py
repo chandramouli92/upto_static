@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
@@ -24,3 +25,27 @@ def post_demo(request):
         return HttpResponse("<h1>thanks for submitting {} as your data".format(name))
 
     return render(request,"post_demo.html")
+
+def register(request):
+    if request.method=='POST':
+        first_name=request.POST.get("first_name")
+        last_name=request.POST.get("last_name")
+        email=request.POST.get("email")
+        pwd=request.POST.get("pwd")
+        phno=request.POST.get("phno")
+        date=request.POST.get("birthday_day")
+        month=request.POST.get("birthday_month")
+        year=request.POST.get("birthday_year")
+        gender=request.POST.get("sex")
+        if gender=="1":
+            gender="female"
+
+        else:
+            gender="male"
+            
+        send_mail("thanks for registarin", "hello mr./ms.{} {}\n welcome to our world".format(first_name,last_name),"pchandramouli92@gmail.com",[email,],fail_silently=False)
+
+        return HttpResponse("{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>".format(first_name,last_name,email,pwd,phno,date,month,year,gender))
+
+    return render(request,"myapp/registrations.html")
+        
