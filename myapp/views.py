@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def index(request):
@@ -43,9 +44,26 @@ def register(request):
         else:
             gender="male"
             
-        send_mail("thanks for registarin", "hello mr./ms.{} {}\n welcome to our world".format(first_name,last_name),"pchandramouli92@gmail.com",[email,],fail_silently=False)
+        send_mail("thanks for registarin", "hello mr./ms.{} {}\n welcome to our world".format(first_name,last_name),
+        "pchandramouli92@gmail.com",[email,],fail_silently=False)
 
         return HttpResponse("{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>".format(first_name,last_name,email,pwd,phno,date,month,year,gender))
 
     return render(request,"myapp/registrations.html")
+
+def multi(request):
+    if request.method=='POST':
+        foods=request.POST.getlist("food")
+        languages=request.POST.getlist("language")
+        return HttpResponse("<h1>{} {}</h1>".format(foods,languages))
+    return render(request,"multiselector.html")
+
+def img_upld(request):
+    if request.method=="POST" and request.FILES:
+        image=request.FILES['cm']
+        fs=FileSystemStorage()
+        fs.save(image.name,image)
+    return render(request,"img_upld.html")
+
+
         

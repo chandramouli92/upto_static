@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR=os.path.join(BASE_DIR,"templates")
 STATIC_DIR_MYAPP=os.path.join(os.path.join(BASE_DIR,"myapp"),"static")
 STATIC_DIR= os.path.join(BASE_DIR,"static")
+MEDIA_DIR=os.path.join(BASE_DIR,"media")
 
 
 # Quick-start development settings - unsuitable for production
@@ -125,8 +126,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     STATIC_DIR_MYAPP,
 ]
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=MEDIA_DIR
+
+
 EMAIL_HOST="smtp.gmail.com"
-EMAIL_PORT=587
+EMAIL_PORT=465
 EMAIL_HOST_USER="pchandramouli92@gmail.com"
 EMAIL_HOST_PASSWORD="Chandu@123"
-EMAIL_USE_TLS=True
+EMAIL_USE_SSL=True
