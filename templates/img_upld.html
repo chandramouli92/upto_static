@@ -6,15 +6,15 @@
     <title>imgupload</title>
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data">
+    <form action="{% url 'myapp:image_display' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    image:<input type="file" name="cm" id="cm">
+    image:<input type="file" name="cm" id="cm"><br><br>
+    image1:<input type="file" name="cm" id="cm"><br><br>
+    image2:<input type="file" name="cm" id="cm"><br><br>
+    image3:<input type="file" name="cm" id="cm"><br><br>
     <input type="submit" value="submit">
     
     </form>
-    {% if file_url %}
-        <img src="{{file_url}}" alt="no image found" height="200" width="300">
-      
-    {% endif %}
+    
 </body>
 </html>

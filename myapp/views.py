@@ -59,13 +59,20 @@ def multi(request):
     return render(request,"multiselector.html")
 
 def img_upld(request):
+    return render(request,"img_upld.html")
+    
+
+
+
+    
+def image_display(request):
     file_url=False
     if request.method=="POST" and request.FILES:
-        image=request.FILES['cm']
-        fs=FileSystemStorage()
-        file=fs.save(image.name,image)
-        file_url=fs.url(file)
-    return render(request,"img_upld.html",context={'file_url':file_url})
-
-
-        
+        file_urls=[]
+        image=request.FILES.getlist('cm')
+        for i in image:
+            fs=FileSystemStorage()
+            file=fs.save(i.name,i)
+            file_url=fs.url(file)
+            file_urls.append(file_url)
+    return render(request,"image_display.html",context={'file_urls':file_urls})
