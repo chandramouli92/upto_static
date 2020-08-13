@@ -12,5 +12,9 @@
     <input type="submit" value="submit">
     
     </form>
+    {% if file_url %}
+        <img src="{{file_url}}" alt="no image found" height="200" width="300">
+      
+    {% endif %}
 </body>
 </html>
