@@ -63,16 +63,22 @@ def img_upld(request):
     
 
 
-
+from myapp.utilities import store_image
     
 def image_display(request):
     file_url=False
     if request.method=="POST" and request.FILES:
-        file_urls=[]
-        image=request.FILES.getlist('cm')
-        for i in image:
-            fs=FileSystemStorage()
-            file=fs.save(i.name,i)
-            file_url=fs.url(file)
-            file_urls.append(file_url)
+        image1=request.FILES.get('cm1')
+        image2=request.FILES.get('cm2')
+        file_urls=map(store_image,[image1,image2])
     return render(request,"image_display.html",context={'file_urls':file_urls})
+        
+
+
+from myapp import forms
+def builtinforms(request):
+    form=forms.SampleForms()
+    return render(request,"builtin.html",{'form':form})
+        
+            
+    
