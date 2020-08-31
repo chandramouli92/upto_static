@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
+pymysql.version_info=(1,3,13,"finally",0)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -80,8 +84,12 @@ WSGI_APPLICATION = 'uptostatic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'static',
+        'USER':'root',
+        'PASSWORD':'chandu',
+        'HOST':'localhost',
+        'PORT':'3306',
     }
 }
 
